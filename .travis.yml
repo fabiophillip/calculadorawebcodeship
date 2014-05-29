@@ -1,0 +1,15 @@
+language: java
+jdk:
+ - openjdk7
+script:
+ - wget https://googleappengine.googlecode.com/files/google_appengine_1.8.9.zip -nv
+ - unzip -q google_appengine_1.8.9.zip
+ - mvn install -DskipTests=false
+ - mvn clean package assembly:assembly
+ - git config --global user.email "haru_glory6@hotmail.com"
+ - git config --global user.name "fabiophillip"
+ - git config --global user.password "viewtiful4490"
+ - git commit -a -m "commit do travis para github"
+ - git log origin/master.. --stat
+ - git push https://fabiophillip:viewtiful4490@github.com/fabiophillip/calculadorawebsimples.git master
+ - mvn clean appengine:update
